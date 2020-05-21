@@ -16,8 +16,7 @@ return new class extends DefaultDeployer
             ->repositoryBranch('master')
             ->symfonyEnvironment('prod')
             ->remoteComposerBinaryPath('composer')
-            ->composerInstallFlags('--no-dev')
-            ->resetOpCacheFor('http://projekty.marcinbabiarz.pl/auctionhouse/');
+            ->composerInstallFlags('--no-dev');
     }
 
     // run some local or remote commands before the deployment is started
