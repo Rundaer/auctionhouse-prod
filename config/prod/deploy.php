@@ -12,8 +12,9 @@ return new class extends DefaultDeployer
             // the absolute path of the remote server directory where the project is deployed
             ->deployDir('/home/platne/serwer54796/public_html/projekty/auctionhouse')
             // the URL of the Git repository where the project code is hosted
-            ->repositoryUrl('git@github.com:Rundaer/auctionhouse-prod.git')
+            ->repositoryUrl('git@github.com:rundaer/auctionhouse-prod.git')
             ->repositoryBranch('master')
+            ->symfonyEnvironment('prod')
             ->remoteComposerBinaryPath('composer');
     }
 
