@@ -15,8 +15,7 @@ return new class extends DefaultDeployer
             ->repositoryUrl('git@github.com:rundaer/auctionhouse-prod.git')
             ->repositoryBranch('master')
             ->symfonyEnvironment('prod')
-            ->remoteComposerBinaryPath('composer')
-            ->composerInstallFlags('--no-dev');
+            ->remoteComposerBinaryPath('composer');
     }
 
     // run some local or remote commands before the deployment is started
