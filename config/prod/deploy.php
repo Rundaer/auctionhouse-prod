@@ -8,20 +8,19 @@ return new class extends DefaultDeployer
     {
         return $this->getConfigBuilder()
             // SSH connection string to connect to the remote server (format: user@host-or-IP:port-number)
-            ->server('serwer54796@serwer54796.lh.pl -p 40022')
+            ->server('serwer54796@serwer54796.lh.pl:40022')
             // the absolute path of the remote server directory where the project is deployed
             ->deployDir('/home/platne/serwer54796/public_html/projekty/auctionhouse')
             // the URL of the Git repository where the project code is hosted
-            ->repositoryUrl('https://github.com/symfony/symfony-demo')
-            // the repository branch to deploy
+            ->repositoryUrl('git@github.com:Rundaer/auctionhouse-prod.git')
             ->repositoryBranch('master')
-        ;
+            ->remoteComposerBinaryPath('composer');
     }
 
     // run some local or remote commands before the deployment is started
     public function beforeStartingDeploy()
     {
-        // $this->runLocal('./vendor/bin/simple-phpunit');
+        
     }
 
     // run some local or remote commands after the deployment is finished
@@ -31,3 +30,4 @@ return new class extends DefaultDeployer
         // $this->runLocal('say "The deployment has finished."');
     }
 };
+
