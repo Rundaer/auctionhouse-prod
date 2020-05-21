@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h1>{{ auction.title }}</h1>
+    <p>Opis: {{ auction.description }}</p>
+    <p>Cena: {{ auction.price }}</p>
+    <p>Aukcja kończy się {{ auction.expiresAt | date("Y-m-d H:i:s") }}</p>
+
+    {# Options #}
+    <a class='button' href="{{ url('auction_index') }}">Powrót</a>
+
+    {% if is_granted("ROLE_USER") %}
+        {{ form_start(buyForm) }}
+            {{ form_widget(buyForm.submit, {"attr": {"class":"btn-success"}}) }}
+            {{ form_rest(buyForm) }}
+        {{ form_end(buyForm) }}
+
+        {{ form(bidForm, {"attr": {"novalidate": "novalidate"}}) }}
+    {% endif %}
+
+    {% if not is_granted("ROLE_USER") %}
+        <p>Musisz być zalogowany żeby móc kupić</p>
+    {% endif %}
+
+
+    {# Display Offers #}
+    <div>
+        {% for offer in auction.offers %}
+            <p>Oferta {{ offer.price }}, złożona {{ offer.createdAt | date("Y-m-d H:i:s")}}</p>
+        {% endfor %}
+    </div>
+{% endblock %}
