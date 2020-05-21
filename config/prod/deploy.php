@@ -26,11 +26,16 @@ return new class extends DefaultDeployer
         
     }
 
+    public function beforePreparing()
+    {
+        $this->log('<h3>Copying over the .env files</>');
+        $this->runRemote('cp {{ deploy_dir }}/repo/.env {{ project_dir }}');
+    }
+
     // run some local or remote commands after the deployment is finished
     public function beforeFinishingDeploy()
     {
-        // $this->runRemote('{{ console_bin }} app:my-task-name');
-        // $this->runLocal('say "The deployment has finished."');
+        $this->runRemote(sprintf('cp -RPp {{ deploy_dir }}/repo/. {{ project_dir }}'));
     }
 };
 
